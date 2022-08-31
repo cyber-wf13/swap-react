@@ -1,0 +1,36 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $accent;
+  padding: 15px 25px;
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  &__logo {
+    height: 30px;
+    margin-right: 30px;
+  }
+
+  &__auth-link {
+    display: inline-block;
+    border: 1px solid $text;
+    border-radius: $radius;
+    padding: 5px 15px;
+    text-align: center;
+    font-size: rem(15);
+    line-height: 1em;
+    color: #fff;
+    background-color: $text;
+    transition: transform 0.2s ease-in;
+
+    @media (any-hover: hover) {
+      &:hover {
+        transform: scale(0.8);
+      }
+    }
+  }
+}
