@@ -1,0 +1,52 @@
+.select {
+  position: relative;
+  color: $dark;
+  user-select: none;
+
+  &__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0 10px;
+    cursor: pointer;
+  }
+
+  &__head-text {
+    font-weight: 400;
+    font-size: rem(22);
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  &__head-icon {
+    transition: all 0.3s ease;
+  }
+
+  &__list {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 10px 5px;
+    top: 100%;
+    left: 0;
+    right: 0;
+    border-radius: rem(5);
+    box-shadow: #c8d2e1 0px 1px 4px 0px;
+    background-color: #fff;
+    padding: 5px 0;
+  }
+
+  &__option {
+    cursor: pointer;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: rem(22);
+    transition: background-color 0.3s ease-in;
+
+    @media (any-hover: hover) {
+      &:hover {
+        background-color: $white;
+      }
+    }
+  }
+}

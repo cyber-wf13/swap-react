@@ -1,0 +1,58 @@
+.calc-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid $white;
+  box-shadow: rgb(#000, 0.04) 0px 1px 6px inset;
+  border-radius: rem(15);
+  padding: 7.5px 15px;
+
+  &__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__head-text {
+    font-weight: 700;
+    line-height: 1em;
+    color: $dark;
+  }
+
+  &__head-button {
+    font-size: rem(13);
+    font-weight: 400;
+    border: none;
+    background-color: transparent;
+    border-radius: 45px;
+    color: $text;
+    outline: none;
+    padding: 3px 7.5px;
+    transition: all 0.3s ease-in;
+    cursor: pointer;
+
+    @media (any-hover: hover) {
+      &:hover {
+        background-color: $text;
+        color: #fff;
+      }
+    }
+  }
+
+  &__body {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0 15px;
+    margin: 15px 0;
+  }
+
+  &__footer {
+    text-align: end;
+  }
+
+  &__footer-text {
+    font-weight: 400;
+    color: $dark;
+  }
+}

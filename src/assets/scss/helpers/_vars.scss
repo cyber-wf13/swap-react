@@ -7,7 +7,9 @@ $maxWidthContainer: $maxWidthContainerCount + ($containerPadding * 2);
 // Переменные основных цветов
 $accent: #393c42;
 $text: #1eab89;
-$shadow: #e4e8ef 4px 4px 24px 0px;
+$white: #e4e8ef;
+$dark: #505050;
+$shadow: $white 4px 4px 24px 0px;
 
 // Переменные геометрии
 $radius: rem(22.5);

@@ -1,0 +1,15 @@
+.calc {
+  max-width: 62.5%;
+  width: 100%;
+  margin: 0 auto;
+
+  &__inputs {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__inputs-item {
+    max-width: 465px;
+    width: 100%;
+  }
+}
