@@ -6,4 +6,8 @@
   width: 100%;
   text-align: right;
   color: inherit;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
 }

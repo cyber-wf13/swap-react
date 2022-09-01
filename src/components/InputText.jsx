@@ -1,5 +1,13 @@
-const InputText = (props) => {
-  return <input className="input-text" type="text" {...props} />;
+const InputText = ({ value, onChange, ...props }) => {
+  return (
+    <input
+      className="input-text"
+      type="text"
+      value={value}
+      onChange={onChange}
+      {...props}
+    />
+  );
 };
 
 export default InputText;

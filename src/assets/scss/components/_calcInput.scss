@@ -7,6 +7,12 @@
   border-radius: rem(15);
   padding: 7.5px 15px;
 
+  &--disabled {
+    background-color: #e4e8ef;
+    color: rgba(#5c6a84, 0.7);
+    cursor: not-allowed;
+  }
+
   &__head {
     display: flex;
     justify-content: space-between;
@@ -40,11 +46,27 @@
   }
 
   &__body {
+    position: relative;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     gap: 0 15px;
     margin: 15px 0;
+  }
+
+  &__body-error {
+    position: absolute;
+    top: -15px;
+    left: 0;
+    font-weight: 700;
+    color: #f00;
+  }
+
+  &__body-text {
+    font-weight: 400;
+    font-size: rem(22);
+    text-align: center;
+    text-transform: uppercase;
   }
 
   &__footer {
