@@ -1,4 +1,6 @@
 import CalcInput from "./CalcInput";
+import CalcRadiosWrapper from "./CalcRadiosWrapper";
+import CalcRow from "./CalcRow";
 
 const ContentMain = (props) => {
   const selectOptions = [
@@ -7,7 +9,7 @@ const ContentMain = (props) => {
   ];
 
   const onInput = function (inputValue, selectedValue) {
-    console.log(inputValue, selectedValue);
+    // console.log(inputValue, selectedValue);
   };
 
   return (
@@ -31,7 +33,14 @@ const ContentMain = (props) => {
           footerText="456"
         />
       </div>
-      <div className="calc__body"></div>
+      <div className="calc__body">
+        <CalcRow text={"Rate"}>1 NXM ≈ 1084,1 TRX</CalcRow>
+        <CalcRow text={"Inverse rate"}>1 TRX ≈ 0.06494 NXM</CalcRow>
+        <CalcRow text={"Slippage tolerance:"}>
+          <CalcRadiosWrapper />
+        </CalcRow>
+        <CalcRow text={"Minimum received:"}>0.00000 NXM</CalcRow>
+      </div>
     </div>
   );
 };

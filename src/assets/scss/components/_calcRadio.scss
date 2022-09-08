@@ -1,0 +1,27 @@
+.calc-radio {
+  &__input:checked + &__body {
+    background: linear-gradient(-45deg, #50c392, #1eab89, #50c392) 0% 0%/200%;
+    color: #fff;
+  }
+
+  &__body {
+    display: inline-block;
+    border: 1px solid $text;
+    border-radius: $radius;
+    font-size: rem(13);
+    background: transparent;
+    color: $text;
+    padding: 4px 8px;
+    transition: all 0.2s ease-out;
+    cursor: pointer;
+    text-align: center;
+    user-select: none;
+
+    @media (any-hover: hover) {
+      &:hover {
+        background: linear-gradient(-45deg, #50c392, #1eab89, #50c392) 0% 0%/200%;
+        color: #fff;
+      }
+    }
+  }
+}
