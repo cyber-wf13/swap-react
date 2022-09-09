@@ -1,0 +1,39 @@
+.calc-textfield {
+  position: relative;
+
+  &::after {
+    content: "%";
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+  }
+
+  &__input {
+    border: 1px solid rgba($dark, 0.3);
+    border-radius: $radius;
+    font-size: rem(13);
+    background: transparent;
+    color: $dark;
+    padding: 4px 20px 4px 8px;
+    transition: all 0.2s ease-out;
+    cursor: pointer;
+    outline: none;
+    width: 60px;
+
+    &:focus {
+      border-color: $text;
+      box-shadow: #aef0c8 0px 0px 0px 2px;
+    }
+
+    &--invalid {
+      border-color: rgba(#f00, 0.5);
+      box-shadow: rgba(#f00, 0.2) 0px 0px 0px 2px;
+
+      &:focus {
+        border-color: rgba(#f00, 0.5);
+        box-shadow: rgba(#f00, 0.2) 0px 0px 0px 2px;
+      }
+    }
+  }
+}

@@ -1,4 +1,5 @@
 import { useId, useState } from "react";
+import { validatorNumber } from "../utils/validator";
 import InputText from "./InputText";
 import Select from "./Select";
 
@@ -21,6 +22,18 @@ const CalcInput = ({
 
   const [selectedValue, setSelectedValue] = useState(selectTitle);
   const [inputValue, setInputValue] = useState("");
+
+  const onChange = function (e) {
+    const value = e.target.value;
+    const isValid = validatorNumber(value);
+    if (!isValid) {
+      setValidError("Please, enter only numbers and .");
+      return;
+    }
+    setInputValue(value);
+    onInput(value, selectedValue);
+    setValidError("");
+  };
 
   return (
     <label htmlFor={inputId} className={labelClassNames}>
@@ -46,17 +59,7 @@ const CalcInput = ({
           id={inputId}
           {...props}
           value={inputValue}
-          onChange={(e) => {
-            const value = e.target.value;
-            if (value.match(/[^.0-9]/)) {
-              setValidError("Please, enter only numbers and .");
-              return;
-            }
-            setInputValue(value);
-            onInput(value, selectedValue);
-            setValidError("");
-            return;
-          }}
+          onChange={onChange}
         />
         {!props.disabled ? (
           <Select

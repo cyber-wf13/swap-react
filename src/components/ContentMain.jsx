@@ -1,3 +1,4 @@
+import { useState } from "react";
 import CalcInput from "./CalcInput";
 import CalcRadiosWrapper from "./CalcRadiosWrapper";
 import CalcRow from "./CalcRow";
@@ -8,8 +9,14 @@ const ContentMain = (props) => {
     { value: "nxm", content: "nxm" },
   ];
 
+  const [radioValue, setRadioValue] = useState("");
+
   const onInput = function (inputValue, selectedValue) {
     // console.log(inputValue, selectedValue);
+  };
+
+  const changeRadios = function (value) {
+    setRadioValue(value);
   };
 
   return (
@@ -37,7 +44,7 @@ const ContentMain = (props) => {
         <CalcRow text={"Rate"}>1 NXM ≈ 1084,1 TRX</CalcRow>
         <CalcRow text={"Inverse rate"}>1 TRX ≈ 0.06494 NXM</CalcRow>
         <CalcRow text={"Slippage tolerance:"}>
-          <CalcRadiosWrapper />
+          <CalcRadiosWrapper changeRadios={changeRadios} />
         </CalcRow>
         <CalcRow text={"Minimum received:"}>0.00000 NXM</CalcRow>
       </div>
