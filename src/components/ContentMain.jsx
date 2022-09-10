@@ -1,7 +1,9 @@
 import { useState } from "react";
+import CalcReverseButton from "../common/CalcReverseButton";
 import CalcInput from "./CalcInput";
 import CalcRadiosWrapper from "./CalcRadiosWrapper";
 import CalcRow from "./CalcRow";
+import ConvertService from "../service/ConvertService";
 
 const ContentMain = (props) => {
   const selectOptions = [
@@ -10,9 +12,26 @@ const ContentMain = (props) => {
   ];
 
   const [radioValue, setRadioValue] = useState("");
+  const [selectedCurrency, setSelectedCurrency] = useState("trx");
+  const [convertedCurrency, setConvertedCurrency] = useState("nxm");
 
   const onInput = function (inputValue, selectedValue) {
-    // console.log(inputValue, selectedValue);
+    setSelectedCurrency(selectedValue);
+    const result = ConvertService.convertTo(
+      inputValue,
+      selectedCurrency,
+      convertedCurrency
+    );
+    console.log(
+      inputValue,
+      `${selectedCurrency} => ${convertedCurrency}`,
+      result
+    );
+  };
+
+  const onCurrencyConvered = function (inputValue, selectedValue) {
+    setConvertedCurrency(selectedValue);
+    console.log("converted is", convertedCurrency);
   };
 
   const changeRadios = function (value) {
@@ -26,17 +45,20 @@ const ContentMain = (props) => {
           className="calc__inputs-item"
           placeholder="0"
           headTitle="You pay"
-          selectTitle="trx"
+          selectTitle={selectedCurrency}
           selectOptions={selectOptions}
           footerText="123"
           onInput={onInput}
         />
+        <CalcReverseButton />
         <CalcInput
           className="calc__inputs-item"
           placeholder="0"
           headTitle="You receive"
           disabled={true}
-          selectTitle="nxm"
+          selectTitle={convertedCurrency}
+          selectOptions={selectOptions}
+          onInput={onCurrencyConvered}
           footerText="456"
         />
       </div>

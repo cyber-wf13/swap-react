@@ -1,7 +1,7 @@
 import { useId, useState } from "react";
 import { validatorNumber } from "../utils/validator";
-import InputText from "./InputText";
-import Select from "./Select";
+import InputText from "../common/InputText";
+import Select from "../common/Select";
 
 const CalcInput = ({
   className,
@@ -61,18 +61,14 @@ const CalcInput = ({
           value={inputValue}
           onChange={onChange}
         />
-        {!props.disabled ? (
-          <Select
-            listOptions={selectOptions}
-            title={selectTitle}
-            onChange={(value) => {
-              setSelectedValue(value);
-              onInput(inputValue, value);
-            }}
-          />
-        ) : (
-          <span className="calc-input__body-text">{selectTitle}</span>
-        )}
+        <Select
+          listOptions={selectOptions}
+          title={selectTitle}
+          onChange={(value) => {
+            setSelectedValue(value);
+            onInput(inputValue, value);
+          }}
+        />
       </div>
       <div className="calc-input__footer">
         <span className="calc-input__footer-text">~${footerText}</span>

@@ -1,0 +1,16 @@
+.calc-reverse-button {
+  border: none;
+  background-color: transparent;
+  height: 22.5px;
+  width: 22.5px;
+  cursor: pointer;
+  transition: transform 0.2s ease-out;
+  font-size: em(20);
+  color: $dark;
+
+  @media (any-hover: hover) {
+    &:hover {
+      transform: rotate(180deg);
+    }
+  }
+}

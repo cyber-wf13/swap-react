@@ -10,7 +10,10 @@
   &--disabled {
     background-color: #e4e8ef;
     color: rgba(#5c6a84, 0.7);
-    cursor: not-allowed;
+  }
+
+  input:disabled {
+    cursor: default;
   }
 
   &__head {
@@ -60,13 +63,6 @@
     left: 0;
     font-weight: 700;
     color: #f00;
-  }
-
-  &__body-text {
-    font-weight: 400;
-    font-size: rem(22);
-    text-align: center;
-    text-transform: uppercase;
   }
 
   &__footer {
