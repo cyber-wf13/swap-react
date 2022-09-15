@@ -1,17 +1,25 @@
-export default class ConvertReverse {
-  static convertTo(currencyCount, currencyFrom, currencyTo) {
-    let result = 0;
+import CoinAPI from "../API/CoinAPI";
 
-    const currency = {
-      trx: {
-        nxm: 0.064,
-      },
-      nxm: {
-        trx: 1084.1,
-      },
-    };
+export default class ConvertService {
+  constructor() {
+    this.currencyList = [
+      "BTC",
+      "DLC",
+      "CAR",
+      "TAG",
+      "RIN",
+      "CASH",
+      "NXS",
+      "HCC",
+      "GB",
+      "DDC",
+    ];
+  }
 
-    result = currencyCount * currency[currencyFrom][currencyTo];
-    return result;
+  async convertTo(currencyCount, currencyFrom, currencyTo) {
+    const api = new CoinAPI();
+    const { rate } = await api.getSpecificRate(currencyFrom, currencyTo);
+
+    return currencyCount * rate;
   }
 }

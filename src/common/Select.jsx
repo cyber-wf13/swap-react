@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import { useEffect } from "react";
 
 const Select = ({ listOptions, title, onChange }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,6 +12,10 @@ const Select = ({ listOptions, title, onChange }) => {
     setSelectedValue(value);
     onChange(value);
   };
+
+  useEffect(() => {
+    setSelectedValue(title);
+  }, [title]);
 
   return (
     <div className="select">
