@@ -1,4 +1,4 @@
-import CoinAPI from "../API/CoinAPI";
+import ConvertAPI from "../API/ConvertAPI";
 
 export default class ConvertService {
   constructor() {
@@ -14,12 +14,21 @@ export default class ConvertService {
       "GB",
       "DDC",
     ];
+    this._api = new ConvertAPI();
   }
 
-  async convertTo(currencyCount, currencyFrom, currencyTo) {
-    const api = new CoinAPI();
-    const { rate } = await api.getSpecificRate(currencyFrom, currencyTo);
+  setRate(currencyFrom, currencyTo) {
+    return this._api
+      .getSpecificRate(currencyFrom, currencyTo)
+      .then((currencyParam) => {
+        return currencyParam[currencyTo];
+      });
+  }
 
+  convertTo(currencyCount, rate) {
+    if (rate === undefined || isNaN(rate)) {
+      return;
+    }
     return currencyCount * rate;
   }
 }
