@@ -36,8 +36,22 @@ const ContentCurrencyTop = () => {
               </td>
               <td className="calc-table__body-ceil">{content.fullName}</td>
               <td className="calc-table__body-ceil">{content.name}</td>
-              <td className="calc-table__body-ceil">{content.changeHour}</td>
-              <td className="calc-table__body-ceil">{content.change24Hour}</td>
+              <td
+                className={[
+                  "calc-table__body-ceil",
+                  content.changeHour.isDecrease ? "_warn" : "_success",
+                ].join(" ")}
+              >
+                {content.changeHour.value}
+              </td>
+              <td
+                className={[
+                  "calc-table__body-ceil",
+                  content.change24Hour.isDecrease ? "_warn" : "_success",
+                ].join(" ")}
+              >
+                {content.change24Hour.value}
+              </td>
               <td className="calc-table__body-ceil">{content.usdPrice}</td>
             </tr>
           );

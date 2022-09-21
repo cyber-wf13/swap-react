@@ -50,8 +50,14 @@ export default class ConvertService {
         name: data.CoinInfo.Name,
         fullName: data.CoinInfo.FullName,
         logo: this._api.mainUrl + data.CoinInfo.ImageUrl,
-        changeHour: data.RAW.USD.CHANGEPCTHOUR,
-        change24Hour: data.RAW.USD.CHANGEPCT24HOUR,
+        changeHour: {
+          value: Number.parseFloat(data.RAW.USD.CHANGEPCTHOUR).toFixed(5),
+          isDecrease: data.RAW.USD.CHANGEPCTHOUR.toString().includes("-"),
+        },
+        change24Hour: {
+          value: Number.parseFloat(data.RAW.USD.CHANGEPCT24HOUR).toFixed(5),
+          isDecrease: data.RAW.USD.CHANGEPCT24HOUR.toString().includes("-"),
+        },
         usdPrice: data.DISPLAY.USD.PRICE,
       });
     }
