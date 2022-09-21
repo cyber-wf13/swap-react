@@ -17,12 +17,13 @@ export default class ConvertService {
     this._api = new ConvertAPI();
   }
 
-  setRate(currencyFrom, currencyTo) {
-    return this._api
-      .getSpecificRate(currencyFrom, currencyTo)
-      .then((currencyParam) => {
-        return currencyParam[currencyTo];
-      });
+  async setRate(currencyFrom, currencyTo) {
+    const currencyParam = await this._api.getSpecificRate(
+      currencyFrom,
+      currencyTo
+    );
+
+    return currencyParam[currencyTo];
   }
 
   convertTo(currencyCount, rate) {

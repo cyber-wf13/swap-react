@@ -1,14 +1,3 @@
-// API key: C4506520-B7AD-4357-8D19-BAB3698F53A4
-
-/* 
-Запрос на отримання курсу по обміну А => В
-/v1/exchangerate/{asset_id_base}/{asset_id_quote}
-
-Запрос на отримання курсу А до ВСІХ валют
-/v1/exchangerate/{asset_id_base}
-
-*/
-
 export default class ConvertAPI {
   constructor() {
     this._restPath = "https://min-api.cryptocompare.com/data/";

@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import CalcReverseButton from "../common/CalcReverseButton";
 import CalcInput from "./CalcInput";
-import CalcRadiosWrapper from "./CalcRadiosWrapper";
 import CalcRow from "./CalcRow";
 import Select from "../common/Select";
 import { validatorNumber } from "../utils/validator";
@@ -13,7 +12,6 @@ const ContentMain = (props) => {
     return { value: curr, content: curr };
   });
 
-  const [radioValue, setRadioValue] = useState("");
   const [inputValue, setInputValue] = useState("");
   const [selectedCurrency, setSelectedCurrency] = useState(
     selectOptions[0].content
@@ -27,14 +25,16 @@ const ContentMain = (props) => {
   const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
-    convert
-      .setRate(selectedCurrency, convertedCurrency)
-      .then((rate) => {
+    const convertCurrency = async function () {
+      try {
+        const rate = await convert.setRate(selectedCurrency, convertedCurrency);
         setCurrencyRate(rate);
-      })
-      .catch((err) => {
-        setHasError(true);
-      });
+      } catch (e) {
+        console.log("error", e);
+      }
+    };
+
+    convertCurrency();
   }, [selectedCurrency, convertedCurrency]);
 
   useEffect(() => {
@@ -54,10 +54,6 @@ const ContentMain = (props) => {
     }
     setInputValue(value);
     setValidError("");
-  };
-
-  const changeRadios = function (value) {
-    setRadioValue(value);
   };
 
   const onClickReverseButton = function () {
@@ -112,10 +108,6 @@ const ContentMain = (props) => {
         <CalcRow text={"Inverse rate"}>
           1 {convertedCurrency} ≈ 0.06494 {selectedCurrency}
         </CalcRow>
-        <CalcRow text={"Slippage tolerance:"}>
-          <CalcRadiosWrapper changeRadios={changeRadios} />
-        </CalcRow>
-        <CalcRow text={"Minimum received:"}>0.00000 NXM</CalcRow>
       </div>
     </div>
   );
