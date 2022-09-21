@@ -1,0 +1,29 @@
+.calc-table {
+  border: 1px solid $accent;
+  border-collapse: collapse;
+  text-align: center;
+  font-size: rem(18);
+
+  &--responsive {
+    overflow-x: auto;
+  }
+
+  &__head-ceil,
+  &__body-ceil {
+    border: 1px solid $dark;
+    padding: 5px;
+  }
+
+  &__head-row {
+    background-color: rgba($dark, 0.6);
+  }
+
+  &__body-row {
+    background-color: $white;
+  }
+
+  &__img {
+    height: 40px;
+    margin: 0 auto;
+  }
+}

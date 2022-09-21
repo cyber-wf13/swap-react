@@ -1,5 +1,6 @@
 export default class ConvertAPI {
   constructor() {
+    this.mainUrl = "https://www.cryptocompare.com";
     this._restPath = "https://min-api.cryptocompare.com/data/";
     this._KEY =
       "0973dc2c4563c621d5383d495328924caca026495cc60b8d576805ba994d8fac";
@@ -9,10 +10,19 @@ export default class ConvertAPI {
   }
 
   async getSpecificRate(from, to) {
-    const path = this._restPath + `price?fsym=${from}&tsyms=${to}`;
-    const response = await fetch(path, {
+    const url = this._restPath + `price?fsym=${from}&tsyms=${to}`;
+    const response = await fetch(url, {
       headers: this._headers,
     });
+    return response.json();
+  }
+
+  async getToplistData(limit = 20) {
+    const url = this._restPath + `top/totalvolfull?limit=${limit}&tsym=USD`;
+    const response = await fetch(url, {
+      headers: this._headers,
+    });
+
     return response.json();
   }
 }
