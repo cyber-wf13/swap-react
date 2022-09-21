@@ -1,5 +1,6 @@
 import Navbar from "./Navbar";
 import Logo from "../assets/img/logo.svg";
+import ConvertPortable from "../components/ConvertPortable";
 
 const Header = (props) => {
   const links = [
@@ -26,9 +27,12 @@ const Header = (props) => {
         <img src={Logo} alt="logo" className="header__logo logo" />
         <Navbar links={links} />
       </div>
-      <a href="#" className="header__auth-link">
-        Login
-      </a>
+      <div className="header__wrapper">
+        <a href="#" className="header__auth-link">
+          Login
+        </a>
+        <ConvertPortable />
+      </div>
     </header>
   );
 };

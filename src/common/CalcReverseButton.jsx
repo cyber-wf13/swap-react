@@ -1,9 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRotate } from "@fortawesome/free-solid-svg-icons";
 
-const CalcReverseButton = (props) => {
+const CalcReverseButton = ({ className = "", ...props }) => {
   return (
-    <button className="calc-reverse-button" type="button" {...props}>
+    <button
+      className={["calc-reverse-button", className].join(" ")}
+      type="button"
+      {...props}
+    >
       <FontAwesomeIcon icon={faRotate} className="calc-reverse-button__icon" />
     </button>
   );

@@ -1,0 +1,58 @@
+.convert-portable {
+  position: relative;
+
+  &__btn {
+    border: none;
+    background-color: transparent;
+    padding: 5px;
+    font-size: rem(24);
+    color: $white;
+    cursor: pointer;
+    margin: 0 10px;
+    transition: color 0.2s ease-in;
+
+    @media (any-hover: hover) {
+      &:hover {
+        color: $text;
+      }
+    }
+  }
+}
+
+.convert-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px 0;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: $accent;
+  padding: 10px;
+  z-index: 1000;
+  border-radius: 15px;
+  box-shadow: 0px -2px 7px 1px rgba($white, 0.3);
+
+  &__input {
+    background-color: $white;
+    width: 300px;
+  }
+
+  &__input-text {
+    text-transform: uppercase;
+    font-size: rem(18);
+  }
+
+  &__icon {
+    color: $white;
+  }
+
+  &__reset {
+    border: none;
+    padding: 5px 10px;
+    font-size: rem(18);
+    background-color: transparent;
+    color: $white;
+    cursor: pointer;
+  }
+}

@@ -23,7 +23,7 @@ export default class ConvertService {
       currencyTo
     );
 
-    return currencyParam[currencyTo];
+    return currencyParam[currencyTo.toUpperCase()];
   }
 
   convertTo(currencyCount, rate) {
