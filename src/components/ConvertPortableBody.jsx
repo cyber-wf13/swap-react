@@ -1,29 +1,17 @@
 import { useEffect, useState } from "react";
 import CalcReverseButton from "../common/CalcReverseButton";
-import ConvertService from "../service/ConvertService";
-import { validatorNumber } from "../utils/validator";
+import { useConvert } from "../hooks/useConvert";
 import CalcInput from "./CalcInput";
 
 const ConvertPortableBody = () => {
   const [inputCurrency, setInputCurrency] = useState("");
   const [inputConvertedCurrency, setInputConvertedCurrency] = useState("");
-  const [validError, setValidError] = useState("");
   const [currencyFrom, setCurrencyFrom] = useState("btc");
   const [currencyTo, setCurrencyTo] = useState("eth");
-  const [currencyRate, setCurrencyRate] = useState(0);
-
-  const convert = new ConvertService();
+  const [result, setRate, currencyRate] = useConvert(inputCurrency);
 
   const onInput = function (value) {
-    const isValid = validatorNumber(value);
-
-    if (!isValid) {
-      setValidError("Please, enter only numbers and .");
-      return;
-    }
-
     setInputCurrency(value);
-    setValidError("");
   };
 
   const onClickReverseButton = function () {
@@ -47,23 +35,13 @@ const ConvertPortableBody = () => {
   }, []);
 
   useEffect(() => {
-    const convertCurrency = async function () {
-      try {
-        const rate = await convert.setRate(currencyFrom, currencyTo);
-        setCurrencyRate(rate);
-      } catch (e) {
-        console.log("error", e);
-      }
-    };
-
-    convertCurrency();
+    setRate(currencyFrom, currencyTo);
   }, [currencyFrom, currencyTo]);
 
   useEffect(() => {
     // if (hasError) {
     //   return;
     // }
-    const result = convert.convertTo(inputCurrency, currencyRate);
     setInputConvertedCurrency(result);
   }, [inputCurrency, currencyRate]);
 
@@ -76,7 +54,6 @@ const ConvertPortableBody = () => {
         footerText="123"
         onInput={onInput}
         value={inputCurrency}
-        validError={validError}
       >
         <span className="convert-body__input-text">{currencyFrom}</span>
       </CalcInput>

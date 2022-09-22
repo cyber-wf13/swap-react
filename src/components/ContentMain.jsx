@@ -3,7 +3,7 @@ import CalcReverseButton from "../common/CalcReverseButton";
 import CalcInput from "./CalcInput";
 import CalcRow from "./CalcRow";
 import Select from "../common/Select";
-import { validatorNumber } from "../utils/validator";
+import { useConvert } from "../hooks/useConvert";
 import ConvertService from "../service/ConvertService";
 
 const ContentMain = (props) => {
@@ -20,40 +20,23 @@ const ContentMain = (props) => {
     selectOptions[1].content
   );
   const [convertedValue, setConvertedValue] = useState("");
-  const [validError, setValidError] = useState("");
-  const [currencyRate, setCurrencyRate] = useState(0);
   const [hasError, setHasError] = useState(false);
+  const [result, setRate, currencyRate] = useConvert(inputValue);
 
   useEffect(() => {
-    const convertCurrency = async function () {
-      try {
-        const rate = await convert.setRate(selectedCurrency, convertedCurrency);
-        setCurrencyRate(rate);
-      } catch (e) {
-        console.log("error", e);
-      }
-    };
-
-    convertCurrency();
+    setRate(selectedCurrency, convertedCurrency);
   }, [selectedCurrency, convertedCurrency]);
 
   useEffect(() => {
     if (hasError) {
       return;
     }
-    const result = convert.convertTo(inputValue, currencyRate);
+
     setConvertedValue(result);
   }, [inputValue, currencyRate]);
 
   const onInput = function (value) {
-    const isValid = validatorNumber(value);
-
-    if (!isValid) {
-      setValidError("Please, enter only numbers and .");
-      return;
-    }
     setInputValue(value);
-    setValidError("");
   };
 
   const onClickReverseButton = function () {
@@ -72,7 +55,6 @@ const ContentMain = (props) => {
           footerText="123"
           onInput={onInput}
           value={inputValue}
-          validError={validError}
         >
           <Select
             listOptions={selectOptions}

@@ -1,5 +1,6 @@
 import { useId, useState } from "react";
 import InputText from "../common/InputText";
+import { validatorNumber } from "../utils/validator";
 
 const CalcInput = ({
   className,
@@ -7,16 +8,28 @@ const CalcInput = ({
   footerText,
   onInput,
   value,
-  validError,
   children,
   ...props
 }) => {
   const inputId = useId();
+  const [validError, setValidError] = useState("");
+
   let labelClassNames = [className, "calc-input"];
   if (props.disabled) {
     labelClassNames.push("calc-input--disabled");
   }
   labelClassNames = labelClassNames.join(" ");
+
+  const inputChangeHandle = function (value) {
+    const isValid = validatorNumber(value);
+
+    if (!isValid) {
+      setValidError("Please, enter only numbers and .");
+      return;
+    }
+    onInput(value);
+    setValidError("");
+  };
 
   return (
     <label htmlFor={inputId} className={labelClassNames}>
@@ -43,7 +56,7 @@ const CalcInput = ({
           value={value}
           onChange={({ target }) => {
             const value = target.value;
-            onInput(value);
+            inputChangeHandle(value);
           }}
         />
         {children}

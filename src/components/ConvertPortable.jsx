@@ -4,7 +4,7 @@ import { useState } from "react";
 import ConvertPortableBody from "./ConvertPortableBody";
 
 const LightConvert = () => {
-  const [isVissible, setIsVissible] = useState(true);
+  const [isVissible, setIsVissible] = useState(false);
   const toggleConvertVissible = function () {
     setIsVissible(!isVissible);
   };

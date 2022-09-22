@@ -16,8 +16,8 @@ function App() {
         text="Buy or sell NXM tokens. NXM tokens grant you proportional power in the
           mutual."
       >
-        <ContentCurrencyTop />
-        {/* <ContentMain /> */}
+        {/* <ContentCurrencyTop /> */}
+        <ContentMain />
       </ContentWrapper>
       <Footer />
     </>
