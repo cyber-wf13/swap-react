@@ -27,7 +27,7 @@ export default class ConvertService {
   }
 
   convertTo(currencyCount, rate) {
-    if (rate === undefined || isNaN(rate)) {
+    if (rate === undefined || isNaN(rate) || isNaN(currencyCount)) {
       return;
     }
     return currencyCount * rate;

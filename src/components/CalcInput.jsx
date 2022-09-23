@@ -54,8 +54,8 @@ const CalcInput = ({
           id={inputId}
           {...props}
           value={value}
-          onChange={({ target }) => {
-            const value = target.value;
+          onInput={(e) => {
+            const value = e.target.value;
             inputChangeHandle(value);
           }}
         />

@@ -1,5 +1,6 @@
 export const validatorNumber = function (value) {
-  if (value.match(/[^.0-9]/)) {
+  const onlyNumDotRegex = /[^.0-9]/g;
+  if (onlyNumDotRegex.exec(value)) {
     return false;
   }
   return true;
