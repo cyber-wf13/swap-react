@@ -13,8 +13,7 @@ function App() {
       <Header />
       <ContentWrapper
         title="Swap"
-        text="Buy or sell NXM tokens. NXM tokens grant you proportional power in the
-          mutual."
+        text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, soluta."
       >
         <Routes>
           {routes.map((route) => {
