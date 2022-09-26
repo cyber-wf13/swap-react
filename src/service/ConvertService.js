@@ -17,6 +17,17 @@ export default class ConvertService {
     this._api = new ConvertAPI();
   }
 
+  async getCurrencyList() {
+    const coinListInfo = await this._api.getCoinList();
+    const coinList = coinListInfo.Data;
+    const formatedCoinList = [];
+    for (let coin in coinList) {
+      formatedCoinList.push({ value: coinList[coin].symbol, content: coin });
+    }
+
+    return formatedCoinList;
+  }
+
   async setRate(currencyFrom, currencyTo) {
     const currencyParam = await this._api.getSpecificRate(
       currencyFrom,

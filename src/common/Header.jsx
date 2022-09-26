@@ -5,20 +5,12 @@ import ConvertPortable from "../components/ConvertPortable";
 const Header = (props) => {
   const links = [
     {
-      href: "swap",
-      content: "Swap",
+      to: "/",
+      content: "Main",
     },
     {
-      href: "cover",
-      content: "Cover",
-    },
-    {
-      href: "stake",
-      content: "Stake",
-    },
-    {
-      href: "claims",
-      content: "Claims",
+      to: "top",
+      content: "Top currency",
     },
   ];
   return (
@@ -28,9 +20,6 @@ const Header = (props) => {
         <Navbar links={links} />
       </div>
       <div className="header__wrapper">
-        <a href="#" className="header__auth-link">
-          Login
-        </a>
         <ConvertPortable />
       </div>
     </header>

@@ -7,21 +7,25 @@ import { useConvert } from "../hooks/useConvert";
 import ConvertService from "../service/ConvertService";
 
 const ContentMain = (props) => {
-  const convert = new ConvertService();
-  const selectOptions = convert.currencyList.map((curr) => {
-    return { value: curr, content: curr };
-  });
-
   const [inputValue, setInputValue] = useState("");
-  const [selectedCurrency, setSelectedCurrency] = useState(
-    selectOptions[0].content
-  );
-  const [convertedCurrency, setConvertedCurrency] = useState(
-    selectOptions[1].content
-  );
+  const [coinsList, setCoinsList] = useState([]);
+  const [selectedCurrency, setSelectedCurrency] = useState("btc");
+  const [convertedCurrency, setConvertedCurrency] = useState("btc");
   const [convertedValue, setConvertedValue] = useState("");
   const [hasError, setHasError] = useState(false);
   const [result, setRate, currencyRate] = useConvert(inputValue);
+
+  useEffect(() => {
+    async function getCoinsList() {
+      const convert = new ConvertService();
+      const list = await convert.getCurrencyList();
+      setCoinsList(list);
+      setSelectedCurrency(list[0].content);
+      setConvertedCurrency(list[1].content);
+    }
+
+    getCoinsList();
+  }, []);
 
   useEffect(() => {
     setRate(selectedCurrency, convertedCurrency);
@@ -57,7 +61,7 @@ const ContentMain = (props) => {
           value={inputValue}
         >
           <Select
-            listOptions={selectOptions}
+            listOptions={coinsList}
             title={selectedCurrency}
             onChange={(value) => {
               setSelectedCurrency(value);
@@ -74,7 +78,7 @@ const ContentMain = (props) => {
           value={convertedValue}
         >
           <Select
-            listOptions={selectOptions}
+            listOptions={coinsList}
             title={convertedCurrency}
             onChange={(value) => {
               setConvertedCurrency(value);

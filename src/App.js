@@ -4,8 +4,8 @@ import React from "react";
 import Header from "./common/Header";
 import Footer from "./common/Footer";
 import ContentWrapper from "./components/ContentWrapper";
-import ContentMain from "./components/ContentMain";
-import ContentCurrencyTop from "./components/ContentCurrencyTop";
+import { routes } from "./router/routes";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
@@ -16,8 +16,11 @@ function App() {
         text="Buy or sell NXM tokens. NXM tokens grant you proportional power in the
           mutual."
       >
-        {/* <ContentCurrencyTop /> */}
-        <ContentMain />
+        <Routes>
+          {routes.map((route) => {
+            return <Route path={route.path} element={route.element} />;
+          })}
+        </Routes>
       </ContentWrapper>
       <Footer />
     </>

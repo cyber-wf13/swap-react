@@ -9,6 +9,12 @@ export default class ConvertAPI {
     };
   }
 
+  async getCoinList() {
+    const uri = this._restPath + `blockchain/list?api_key=${this._KEY}`;
+    const response = await fetch(uri);
+    return response.json();
+  }
+
   async getSpecificRate(from, to) {
     const url = this._restPath + `price?fsym=${from}&tsyms=${to}`;
     const response = await fetch(url, {
