@@ -11,7 +11,7 @@
   flex-wrap: wrap;
   gap: 5px 15px;
 
-  &__item {
+  &__link {
     transition: color 0.2s ease-in;
     @media (any-hover: hover) {
       &:hover {
@@ -20,7 +20,7 @@
     }
   }
 
-  &__item--active {
+  &__link.active {
     color: $text;
   }
 }

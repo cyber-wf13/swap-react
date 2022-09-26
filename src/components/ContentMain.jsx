@@ -14,6 +14,9 @@ const ContentMain = (props) => {
   const [convertedValue, setConvertedValue] = useState("");
   const [hasError, setHasError] = useState(false);
   const [result, setRate, currencyRate] = useConvert(inputValue);
+  const [inverseResult, setInverseRate, inverseRate] = useConvert(1);
+  const [usdResult, setUsdRate] = useConvert(inputValue);
+  const [usdInverseResult, setUsdInverseResult] = useConvert(result);
 
   useEffect(() => {
     async function getCoinsList() {
@@ -29,6 +32,9 @@ const ContentMain = (props) => {
 
   useEffect(() => {
     setRate(selectedCurrency, convertedCurrency);
+    setInverseRate(convertedCurrency, selectedCurrency);
+    setUsdRate(selectedCurrency, "USD");
+    setUsdInverseResult(convertedCurrency, "USD");
   }, [selectedCurrency, convertedCurrency]);
 
   useEffect(() => {
@@ -56,7 +62,7 @@ const ContentMain = (props) => {
           className="calc__inputs-item"
           placeholder="0"
           headTitle="You pay"
-          footerText="123"
+          footerText={usdResult}
           onInput={onInput}
           value={inputValue}
         >
@@ -74,7 +80,7 @@ const ContentMain = (props) => {
           placeholder="0"
           headTitle="You receive"
           disabled={true}
-          footerText="456"
+          footerText={usdInverseResult}
           value={convertedValue}
         >
           <Select
@@ -92,7 +98,7 @@ const ContentMain = (props) => {
           1 {selectedCurrency} ≈ {currencyRate} {convertedCurrency}
         </CalcRow>
         <CalcRow text={"Inverse rate"}>
-          1 {convertedCurrency} ≈ 0.06494 {selectedCurrency}
+          1 {convertedCurrency} ≈ {inverseRate} {selectedCurrency}
         </CalcRow>
       </div>
     </div>

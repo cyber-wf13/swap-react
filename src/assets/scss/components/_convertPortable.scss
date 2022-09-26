@@ -36,6 +36,9 @@
   &__input {
     background-color: $white;
     width: 300px;
+    @media (max-width: (map.get($breakpoints, "sm") - 0.02)) {
+      width: 220px;
+    }
   }
 
   &__input-text {

@@ -9,6 +9,8 @@ const ConvertPortableBody = () => {
   const [currencyFrom, setCurrencyFrom] = useState("btc");
   const [currencyTo, setCurrencyTo] = useState("eth");
   const [result, setRate, currencyRate] = useConvert(inputCurrency);
+  const [usdResult, setUsdRate] = useConvert(inputCurrency);
+  const [usdInverseResult, setUsdInverseResult] = useConvert(result);
 
   const onInput = function (value) {
     setInputCurrency(value);
@@ -36,6 +38,8 @@ const ConvertPortableBody = () => {
 
   useEffect(() => {
     setRate(currencyFrom, currencyTo);
+    setUsdRate(currencyFrom, "USD");
+    setUsdInverseResult(currencyTo, "USD");
   }, [currencyFrom, currencyTo]);
 
   useEffect(() => {
@@ -51,7 +55,7 @@ const ConvertPortableBody = () => {
         className="convert-body__input"
         placeholder="0"
         headTitle="You pay"
-        footerText="123"
+        footerText={usdResult}
         onInput={onInput}
         value={inputCurrency}
       >
@@ -66,7 +70,7 @@ const ConvertPortableBody = () => {
         headTitle="You receive"
         placeholder="0"
         disabled={true}
-        footerText="456"
+        footerText={usdInverseResult}
         value={inputConvertedCurrency}
       >
         <span className="convert-body__input-text">{currencyTo}</span>

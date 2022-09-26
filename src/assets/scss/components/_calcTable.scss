@@ -1,8 +1,8 @@
 .calc-table {
-  border: 1px solid $accent;
   border-collapse: collapse;
   text-align: center;
   font-size: rem(18);
+  color: $white;
 
   &--responsive {
     overflow-x: auto;
@@ -10,16 +10,23 @@
 
   &__head-ceil,
   &__body-ceil {
-    border: 1px solid $dark;
     padding: 5px;
   }
 
   &__head-row {
-    background-color: rgba($dark, 0.6);
+    background-color: $accent;
+    border: none;
+    border-bottom: 2px solid $white;
   }
 
   &__body-row {
-    background-color: $white;
+    &:nth-child(odd) {
+      background-color: $dark;
+    }
+
+    &:nth-child(even) {
+      background-color: $accent;
+    }
   }
 
   &__img {
@@ -28,8 +35,7 @@
   }
 
   &__button {
-    border: 2px solid $dark;
-    border-radius: 3px;
+    border: none;
     padding: 5px;
     background-color: transparent;
     font-weight: 700;

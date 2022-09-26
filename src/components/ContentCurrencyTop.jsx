@@ -4,7 +4,7 @@ import CalcTable from "./CalcTable";
 
 const ContentCurrencyTop = () => {
   const convert = new ConvertService();
-  const tableHeaders = [
+  const [tableHeaders, setTableHeaders] = useState([
     "Logo",
     "Full Name",
     "Name",
@@ -12,9 +12,7 @@ const ContentCurrencyTop = () => {
     "24 hour",
     "USD",
     "Compare",
-    "Delete",
-  ];
-
+  ]);
   const [tableContent, setTableContent] = useState([]);
   const [comparedCurrency, setComparedCurrency] = useState([]);
 
@@ -33,12 +31,15 @@ const ContentCurrencyTop = () => {
       fromLocalStorage.push(localStorage.getItem("convertTo"));
     }
 
+    if (fromLocalStorage.length > 0) {
+      setTableHeaders([...tableHeaders, "Delete"]);
+    }
+
     setComparedCurrency([...comparedCurrency, ...fromLocalStorage]);
   }, []);
 
   const clickCompareBtn = function (currencyId) {
     if (comparedCurrency.length === 2) {
-      console.log("many for compare");
       return;
     }
     setComparedCurrency([currencyId, ...comparedCurrency]);
@@ -49,6 +50,10 @@ const ContentCurrencyTop = () => {
 
     if (comparedCurrency.length === 1) {
       localStorage.setItem("convertTo", currencyId);
+    }
+
+    if (!tableHeaders.includes("Delete")) {
+      setTableHeaders([...tableHeaders, "Delete"]);
     }
   };
 
@@ -62,6 +67,12 @@ const ContentCurrencyTop = () => {
       localStorage.removeItem("convertFrom");
     } else if (localStorage.getItem("convertTo") === currencyId) {
       localStorage.removeItem("convertTo");
+    }
+
+    if (comparedArray.length === 0) {
+      const tableHeadersArray = [...tableHeaders];
+      tableHeadersArray.pop();
+      setTableHeaders(tableHeadersArray);
     }
   };
 

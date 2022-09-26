@@ -18,7 +18,13 @@ function App() {
       >
         <Routes>
           {routes.map((route) => {
-            return <Route path={route.path} element={route.element} />;
+            return (
+              <Route
+                path={route.path}
+                element={route.element}
+                key={route.path}
+              />
+            );
           })}
         </Routes>
       </ContentWrapper>
