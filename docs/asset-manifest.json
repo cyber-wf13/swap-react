@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/cyber-wf13/swap-react/static/css/main.1519237c.css",
-    "main.js": "/cyber-wf13/swap-react/static/js/main.10d37206.js",
-    "static/media/logo.svg": "/cyber-wf13/swap-react/static/media/logo.f903d1c7e64677b4bb8c14cd9745a1c0.svg",
-    "index.html": "/cyber-wf13/swap-react/index.html",
-    "main.1519237c.css.map": "/cyber-wf13/swap-react/static/css/main.1519237c.css.map",
-    "main.10d37206.js.map": "/cyber-wf13/swap-react/static/js/main.10d37206.js.map"
+    "main.css": "/swap-react/static/css/main.1519237c.css",
+    "main.js": "/swap-react/static/js/main.29f7f1a1.js",
+    "static/media/logo.svg": "/swap-react/static/media/logo.f903d1c7e64677b4bb8c14cd9745a1c0.svg",
+    "index.html": "/swap-react/index.html",
+    "main.1519237c.css.map": "/swap-react/static/css/main.1519237c.css.map",
+    "main.29f7f1a1.js.map": "/swap-react/static/js/main.29f7f1a1.js.map"
   },
   "entrypoints": [
     "static/css/main.1519237c.css",
-    "static/js/main.10d37206.js"
+    "static/js/main.29f7f1a1.js"
   ]
 }
