@@ -3,7 +3,7 @@ import ContentCurrencyTop from "../components/ContentCurrencyTop";
 
 export const routes = [
   {
-    path: "/",
+    path: "/swap-react/",
     element: <ContentMain />,
   },
   {
